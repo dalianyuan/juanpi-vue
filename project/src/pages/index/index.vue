@@ -1,9 +1,9 @@
 <template>
   <div>
     <header class="header">
-    	<div class="back">返回</div>
+    	<div class="back iconfont">&#xe67c;</div>
     	<div class="search"></div>
-    	<div class="city">城市</div>
+    	<div class="city">城市<i class="iconfont">&#xe6b5;</i></div>
     </header>
     <swiper :options="swiperOption">
 	    <!-- slides -->
@@ -52,6 +52,7 @@ export default{
 	.back{
 		width: .64rem;
 		line-height: .86rem;
+		text-align: center;
 	}
 	.search{
 		flex: 1;
@@ -62,6 +63,8 @@ export default{
 	.city{
 		width: 1.14rem;
 		line-height: .86rem;
+		font-size: 14px;
+		text-align: center;
 	}
 	.swiper-img-con{
 		width: 100%;
