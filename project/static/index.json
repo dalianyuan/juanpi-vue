@@ -1,0 +1,18 @@
+{
+	"ret": true,
+	"data": {
+		"swiper": [{
+			"id": "0001",
+			"imgUrl": "https://img1.qunarzz.com/vc/98/87/44/24808f10cdfa9626e397f660a8.jpg",
+			"link": ""
+		},{
+			"id": "0002",
+			"imgUrl": "https://img1.qunarzz.com/vc/b1/8b/65/434a993746bdb3b321d059386f.jpg",
+			"link": ""
+		},{
+			"id": "0003",
+			"imgUrl": "https://img1.qunarzz.com/vc/c5/77/bd/0ae9ab95338e37b9dc8c8412b2.jpg",
+			"link": ""
+		}]
+	}
+}

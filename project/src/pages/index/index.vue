@@ -2,43 +2,47 @@
   <div>
     <header class="header">
     	<div class="back iconfont">&#xe67c;</div>
-    	<div class="search"></div>
-    	<div class="city">城市<i class="iconfont">&#xe6b5;</i></div>
+    	<div class="search iconfont">&#xe661;输入城市/景点/游玩主题</div>
+    	<div class="city"><div class="cityCont">城市</div><i class="iconfont">&#xe6b5;</i></div>
     </header>
     <swiper :options="swiperOption">
 	    <!-- slides -->
-	    <swiper-slide>
+	    <swiper-slide v-for="item in swiperImgs" :key="item.id">
 	    	<div class="swiper-img-con">
-	    	 <img class="swiper-img" src="https://img1.qunarzz.com/vc/98/87/44/24808f10cdfa9626e397f660a8.jpg"/>
-	    	</div>
-	    </swiper-slide>
-	    <swiper-slide>
-	    	<div class="swiper-img-con">
-	    	 <img class="swiper-img" src="https://img1.qunarzz.com/vc/b1/8b/65/434a993746bdb3b321d059386f.jpg"/>
-	    	</div>
-	    </swiper-slide>
-	    <swiper-slide>
-	    	<div class="swiper-img-con">
-	    	 <img class="swiper-img" src="https://img1.qunarzz.com/vc/c5/77/bd/0ae9ab95338e37b9dc8c8412b2.jpg"/>
+	    	 <img class="swiper-img" :src="item.imgUrl"/>
 	    	</div>
 	    </swiper-slide>
 	    <!-- Optional controls -->
 	    <div class="swiper-pagination"  slot="pagination"></div>
 	  </swiper>
+	  121123232434
   </div>
 </template>
 
 <script>
 export default{
   name: 'Index',
-  data () {
+  data() {
     return {
+    	swiperImgs: [],
       swiperOption: {
-      	pagination: {
-          el: '.swiper-pagination'
-        }
+      	loop: true,
+      	autoplay: 1600,
+      	pagination: '.swiper-pagination',
       }
     }
+  },
+  created() {
+  	this.getIndexData()
+  },
+  methods: {
+  	getIndexData() {
+  		this.$http.get("/static/index.json")
+  			.then(this.handleGetDataSuc.bind(this))
+  	},
+  	handleGetDataSuc(res) {
+  		this.swiperImgs = res.body.data.swiper
+  	}
   }
 }
 </script>
@@ -57,17 +61,34 @@ export default{
 	.search{
 		flex: 1;
 		margin: .14rem .18rem;
+		padding-left: .16rem;
 		background: #fff;
+		line-height: .58rem;
 		border-radius: .05rem;
+		color: #ccc;
+		font-size: 14px;
 	}
 	.city{
+		display: flex;
+		justify-content: space-between;
 		width: 1.14rem;
 		line-height: .86rem;
 		font-size: 14px;
 		text-align: center;
 	}
+	.cityCont{
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	.city>i{
+		padding-right: .16rem;
+	}
 	.swiper-img-con{
+		overflow: hidden;
 		width: 100%;
+		height: 0;
+		padding-bottom: 30.4%;
 	}
 	.swiper-img{
 		width: 100%;
