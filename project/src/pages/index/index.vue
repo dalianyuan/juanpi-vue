@@ -2,29 +2,45 @@
   <div>
     <header class="header">
     	<div class="back iconfont">&#xe67c;</div>
-    	<div class="search iconfont">&#xe661;输入城市/景点/游玩主题</div>
-    	<div class="city"><div class="cityCont">城市</div><i class="iconfont">&#xe6b5;</i></div>
+    	<div class="search iconfont">&#xe661;输入商品/店铺</div>
+    	<div class="city"><div class="cityCont">分类</div><i class="iconfont">&#xe6b5;</i></div>
     </header>
-    <swiper :options="swiperOption">
-	    <!-- slides -->
-	    <swiper-slide v-for="item in swiperImgs" :key="item.id">
-	    	<div class="swiper-img-con">
-	    	 <img class="swiper-img" :src="item.imgUrl"/>
-	    	</div>
-	    </swiper-slide>
-	    <!-- Optional controls -->
-	    <div class="swiper-pagination"  slot="pagination"></div>
-	  </swiper>
-	  121123232434
+    
+  	<div class="swiper-img-con">
+	    <swiper :options="swiperOption">
+		    <!-- slides -->
+		    <swiper-slide v-for="item in swiperImgs" :key="item.id">
+		    	 <img class="swiper-img" :src="item.pic"/>
+		    </swiper-slide>
+		    <!-- Optional controls -->
+		    <div class="swiper-pagination"  slot="pagination"></div>
+		  </swiper>
+  	</div>
+	  
+	  <div class="menuContainer">
+	  	<div class="menuItem" v-for="item in menuInfo">
+	  		<a href="javascript:;">
+	  			<img class="menuImg" :src="item.imgUrl"/>
+	  		</a>
+	  	</div>
+	  </div>
+	  
+	  <div class="advertise">
+	  	<a class="advertiseA" href="javascript:;">
+	  		<img class="advertiseImg" src="https://s2.juancdn.com/jas/180330/2/c/5abe12768150a15c58717776_1080x312.gif"/>
+	  	</a>
+	  </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default{
   name: 'Index',
   data() {
     return {
     	swiperImgs: [],
+    	menuInfo: [],
       swiperOption: {
       	loop: true,
       	autoplay: 1600,
@@ -37,11 +53,22 @@ export default{
   },
   methods: {
   	getIndexData() {
+  		axios.get("/api/getIndexFirstPaintInfo?cid=&zy_ids=p8_c4_l1_0&app_name=zhe&app_version=&platform=&catname=newest_zhe")
+  			.then(this.handleGetSwiperSuc.bind(this))
+  		
   		this.$http.get("/static/index.json")
-  			.then(this.handleGetDataSuc.bind(this))
+  			.then(this.handleGetIconSuc.bind(this))
+  		
   	},
-  	handleGetDataSuc(res) {
-  		this.swiperImgs = res.body.data.swiper
+  	handleGetSwiperSuc(res) {
+  		const swiperData = res.data.adsInfo;
+			if(res && res.data && swiperData && swiperData.slide_ads.config.slide){
+				this.swiperImgs = swiperData.slide_ads.config.slide
+			}
+  	},
+  	handleGetIconSuc(res) {
+  		this.menuInfo = res.data.data.icons;
+  		console.log(this.menuInfo)
   	}
   }
 }
@@ -50,8 +77,8 @@ export default{
 <style scoped>
 	.header{
 		display: flex;
-		background: #05bad5;
-		color: #fff;
+		background: #fff;
+		color: rgb(153, 153, 153);
 	}
 	.back{
 		width: .64rem;
@@ -62,10 +89,10 @@ export default{
 		flex: 1;
 		margin: .14rem .18rem;
 		padding-left: .16rem;
-		background: #fff;
+		background: #f2f2f2;
 		line-height: .58rem;
-		border-radius: .05rem;
-		color: #ccc;
+		border-radius: .5rem;
+		color: rgb(153, 153, 153);
 		font-size: 14px;
 	}
 	.city{
@@ -84,13 +111,31 @@ export default{
 	.city>i{
 		padding-right: .16rem;
 	}
+	
 	.swiper-img-con{
 		overflow: hidden;
-		width: 100%;
 		height: 0;
-		padding-bottom: 30.4%;
+		padding-bottom: 38.7%;
 	}
 	.swiper-img{
+		width: 100%;
+	}
+	
+	.menuContainer{
+		display: flex;
+		flex-wrap: wrap;
+		overflow: hidden;
+		height: 0;
+		padding-bottom: 44.74%;
+	}
+	.menuItem{
+		width: 25%;
+	}
+	.menuImg{
+		width: 100%;
+	}
+	
+	.advertiseImg{
 		width: 100%;
 	}
 </style>

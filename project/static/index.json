@@ -1,18 +1,38 @@
 {
 	"ret": true,
 	"data": {
-		"swiper": [{
+		"icons": [{
 			"id": "0001",
-			"imgUrl": "https://img1.qunarzz.com/vc/98/87/44/24808f10cdfa9626e397f660a8.jpg",
-			"link": ""
+			"imgUrl":"https://goods1.juancdn.com/jas/180201/0/a/5a726f9da9fcf82cc7201354_270x241.png?iopcmd=convert&Q=85&dst=png",
+			"text": "1元拼"
 		},{
 			"id": "0002",
-			"imgUrl": "https://img1.qunarzz.com/vc/b1/8b/65/434a993746bdb3b321d059386f.jpg",
-			"link": ""
+			"imgUrl":"https://goods7.juancdn.com/jas/180201/c/4/5a726fb2a9fcf82f8003e754_270x241.png?iopcmd=convert&Q=85&dst=png",
+			"text": "拼好货"
 		},{
 			"id": "0003",
-			"imgUrl": "https://img1.qunarzz.com/vc/c5/77/bd/0ae9ab95338e37b9dc8c8412b2.jpg",
-			"link": ""
+			"imgUrl":"https://goods1.juancdn.com/jas/180202/0/5/5a7451eca9fcf803096558b1_270x241.png?iopcmd=convert&Q=85&dst=png",
+			"text": "限时秒杀"
+		},{
+			"id": "0004",
+			"imgUrl":"https://goods7.juancdn.com/jas/180202/c/5/5a7452938150a168244c04af_270x244.png?iopcmd=convert&Q=85&dst=png",
+			"text": "家有萌宝"
+		},{
+			"id": "0005",
+			"imgUrl":"https://goods5.juancdn.com/jas/180222/8/5/5a8e9c188150a133c81553be_270x241.png?iopcmd=convert&Q=85&dst=png",
+			"text": "瓜分60元"
+		},{
+			"id": "0006",
+			"imgUrl":"https://goods4.juancdn.com/jas/180201/6/d/5a72727a8150a11d8048211a_270x241.png?imageMogr2/quality/85!/format/png",
+			"text": "手机充值"
+		},{
+			"id": "0007",
+			"imgUrl":"https://goods2.juancdn.com/jas/180201/3/d/5a727415a9fcf8280d24465a_270x241.png?imageMogr2/quality/85!/format/png",
+			"text": "品牌特惠"
+		},{
+			"id": "0008",
+			"imgUrl":"https://s2.juancdn.com/jas/180201/c/7/5a7274218150a1113c3670b2_270x241.gif",
+			"text": "至尊会员"
 		}]
 	}
 }
