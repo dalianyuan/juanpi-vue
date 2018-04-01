@@ -3,7 +3,7 @@
     <header class="header">
     	<div class="back iconfont">&#xe67c;</div>
     	<div class="search iconfont">&#xe661;输入商品/店铺</div>
-    	<div class="city"><div class="cityCont">分类</div><i class="iconfont">&#xe6b5;</i></div>
+    	<div class="city"><div class="city-cont">分类</div><i class="iconfont">&#xe6b5;</i></div>
     </header>
     
   	<div class="swiper-img-con">
@@ -17,26 +17,31 @@
 		  </swiper>
   	</div>
 	  
-	  <div class="menuContainer">
-	  	<div class="menuItem" v-for="item in menuInfo">
+	  <div class="menu-container">
+	  	<div class="menu-item" v-for="item in menuInfo">
 	  		<a href="javascript:;">
-	  			<img class="menuImg" :src="item.imgUrl"/>
+	  			<img class="menu-img" :src="item.imgUrl"/>
 	  		</a>
 	  	</div>
 	  </div>
 	  
 	  <div class="advertise">
-	  	<a class="advertiseA" href="javascript:;">
-	  		<img class="advertiseImg" src="https://s2.juancdn.com/jas/180330/2/c/5abe12768150a15c58717776_1080x312.gif"/>
+	  	<a href="javascript:;">
+	  		<img class="advertise-img" src="https://s2.juancdn.com/jas/180330/2/c/5abe12768150a15c58717776_1080x312.gif"/>
 	  	</a>
 	  </div>
+	  
+	  <Footer/>
+	  
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Footer from '@/pages/common/footer'
 export default{
   name: 'Index',
+  
   data() {
     return {
     	swiperImgs: [],
@@ -48,9 +53,11 @@ export default{
       }
     }
   },
-  created() {
-  	this.getIndexData()
-  },
+  
+  components: {
+		Footer
+	},
+  
   methods: {
   	getIndexData() {
   		axios.get("/api/getIndexFirstPaintInfo?cid=&zy_ids=p8_c4_l1_0&app_name=zhe&app_version=&platform=&catname=newest_zhe")
@@ -67,10 +74,17 @@ export default{
 			}
   	},
   	handleGetIconSuc(res) {
-  		this.menuInfo = res.data.data.icons;
-  		console.log(this.menuInfo)
+//		console.log(res.data)
+  		if(res && res.body.ret && res.data && res.data.data.icons){
+  			this.menuInfo = res.data.data.icons;
+  		}
   	}
+  },
+  
+  created() {
+  	this.getIndexData()
   }
+  
 }
 </script>
 
@@ -103,7 +117,7 @@ export default{
 		font-size: 14px;
 		text-align: center;
 	}
-	.cityCont{
+	.city-cont{
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
@@ -121,21 +135,21 @@ export default{
 		width: 100%;
 	}
 	
-	.menuContainer{
+	.menu-container{
 		display: flex;
 		flex-wrap: wrap;
 		overflow: hidden;
 		height: 0;
 		padding-bottom: 44.74%;
 	}
-	.menuItem{
+	.menu-item{
 		width: 25%;
 	}
-	.menuImg{
+	.menu-img{
 		width: 100%;
 	}
 	
-	.advertiseImg{
+	.advertise-img{
 		width: 100%;
 	}
 </style>
