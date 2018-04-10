@@ -7,7 +7,7 @@
 			:key="index"
 			:to="menuInfoItem.routerUrl"
 			active-class="active">
-			<img class="footer-menu-img" :src="menuInfoItem.bg_icon" />
+			<i :class="menuInfoItem.menuIcon" class="footer-icon iconfont"></i>
 			{{menuInfoItem.title}}
 		</router-link>
 	</div>
@@ -22,6 +22,7 @@
 		data(){
 			return {
 				routerUrl: ['/', '/vip', '/classify', '/shopcar', '/my'],
+				menuIcon: ['icon-shouye2', 'icon-tianjiahuiyuan', 'icon-icon_category', 'icon-gouwuche', 'icon-wode-F'],
 				footerMenuInfo: []
 			}
 		},
@@ -37,11 +38,11 @@
 					this.footerMenuInfo = res.data.menuInfo.app_menu.menulist
 					for(var i = 0; i < this.footerMenuInfo.length; i++){
 						this.footerMenuInfo[ i ].routerUrl = this.routerUrl[ i ]
+						this.footerMenuInfo[ i ].menuIcon = this.menuIcon[ i ]
 					}
 				}
 //				console.log(this.footerMenuInfo)
 			}
-			
 		},
 		
 		created() {
@@ -76,8 +77,8 @@
 	.active{
 		color: #ff464e;
 	}
-	.footer-menu-img{
-		width: 33%;
-		max-height: 52%;
+	.footer-icon{
+		text-align: center;
+		font-size: 18px;
 	}
 </style>
