@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="index">
     <header class="header">
     	<div class="back iconfont">&#xe67c;</div>
     	<div class="search iconfont">&#xe661;输入商品/店铺</div>
@@ -31,6 +31,23 @@
 	  	</a>
 	  </div>
 	  
+	  <div class="adver-small">
+	  	<a class="adver-small-a" href="javascript:;">
+	  		<img class="adver-small-img" src="https://goods7.juancdn.com/jas/180320/c/0/5ab0e14fa9fcf883424b0c35_540x320.png?iopcmd=convert&Q=85&dst=png"/>
+	  	</a>
+	  	<a class="adver-small-a" href="javascript:;">
+	  		<img class="adver-small-img" src="https://goods7.juancdn.com/jas/180227/c/9/5a9529f68150a15d9869cfc3_540x320.png?iopcmd=convert&Q=85&dst=png"/>
+	  	</a>
+	  </div>
+	  
+	  <div class="goods">
+	  	<a href="javascript:;">
+	  		<img class="goods-img" src="https://goods6.juancdn.com/jas/180131/b/4/5a716031a9fcf8682e622c85_1080x115.png?imageMogr2/quality/85!/format/png"/>
+	  	</a>
+	  </div>
+	  
+	  <GoodsContainer/>
+	  
 	  <Footer/>
 	  
   </div>
@@ -38,6 +55,7 @@
 
 <script>
 import axios from 'axios'
+import GoodsContainer from './GoodsContainer'
 import Footer from '@/pages/common/footer'
 export default{
   name: 'Index',
@@ -55,12 +73,13 @@ export default{
   },
   
   components: {
+  	GoodsContainer,
 		Footer
 	},
   
   methods: {
   	getIndexData() {
-  		axios.get("/api/getIndexFirstPaintInfo?cid=&zy_ids=p8_c4_l1_0&app_name=zhe&app_version=&platform=&catname=newest_zhe")
+			axios.get("/api/getIndexFirstPaintInfo?cid=&zy_ids=p8_c4_l1_0&app_name=zhe&app_version=&platform=&catname=newest_zhe")
   			.then(this.handleGetSwiperSuc.bind(this))
   		
   		this.$http.get("/static/index.json")
@@ -89,6 +108,10 @@ export default{
 </script>
 
 <style scoped>
+	.index{
+		background: #f4f4f8;
+		padding-bottom: 1rem;
+	}
 	.header{
 		display: flex;
 		background: #fff;
@@ -140,6 +163,7 @@ export default{
 		flex-wrap: wrap;
 		overflow: hidden;
 		height: 0;
+		background: #fff;
 		padding-bottom: 44.74%;
 	}
 	.menu-item{
@@ -152,4 +176,23 @@ export default{
 	.advertise-img{
 		width: 100%;
 	}
+	
+	.adver-small{
+		display: flex;
+	}
+	.adver-small-a{
+		display: inline-block;
+		width: 50%;
+	}
+	.adver-small-img{
+		width: 100%;
+	}
+	
+	.goods{
+		margin: .2rem 0;
+	}
+	.goods-img{
+		width: 100%;
+	}
+	
 </style>
